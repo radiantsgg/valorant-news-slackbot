@@ -9,74 +9,94 @@
 
 ![](https://github.com/radiantsgg/valorant-news-slackbot/blob/master/assets/sample-post.png?raw=true)
 
-### Installing
+---
 
-A step by step series of examples that tell you how to get a development env running
+## Development
 
-Say what the step will be
+### Prerequisites
 
-```
-Give the example
-```
+Create a new slack app https://api.slack.com/apps?new_app=1
 
-And repeat
+Retrieve apps client ID and client Secret and fill in `.env`
 
 ```
-until finished
+SLACK_CLIENT_ID=''
+SLACK_CLIENT_SECRET=''
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Add the redirection URL `http://localhost:3000/install` to your app
 
-## Running the tests
+### Installation
 
-Explain how to run the automated tests for this system
+MySQL 5.7 database required. https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+Update `knexfile.js` with your database information:
 
 ```
-Give an example
+module.exports = {
+  development: {
+    client: 'mysql2',
+    connection: {
+      port: 3306,
+      host: 'localhost',
+      database: 'slackbots',
+      user: 'root',
+      password: '',
+    }
+  }
+}
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+Install dependencies
 
 ```
-Give an example
+npm install
 ```
+
+Migrate database to create required tables
+
+```
+npm run migrate
+```
+
+Start development server
+
+```
+npm run dev
+```
+
+### Endpoints
+
+`localhost:3000/install`
+
+The install endpoint handles OAuth tokens and saves Slack server channel's required information to push messages.
+
+`localhost:3000/update`
+
+The endpoint is used to trigger a search for new articles. When new articles are found they are pushed to servers.
+
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Deploy to your favorite service that runs docker containers. Update `knexfile.js` and `.env` with your production database connection information.
+
+To start production mode
+
+```
+npm run start
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Knex](http://knexjs.org/) - A SQL Query Builder for Javascript
+* [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **James Vansteenkiste** - *Initial work* - [jvanst](https://github.com/jvanst)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
