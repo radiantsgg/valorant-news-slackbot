@@ -1,21 +1,10 @@
 require('dotenv').config()
 
-const fetchPosts = require('./post/postFetch')
-const checkPostNovelty = require('./post/postNoveltyCheck')
-const postToChannel = require('./post/postToChannel')
-const postSave = require('./post/postSave')
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 8080;
 
-module.exports = async function () {
-  
-  // Fetch lastest posts
-  const posts = await fetchPosts()
+app.get('/install', require('./install'))
+app.get('/update', require('./update'))
 
-  // Make sure posts are new
-  const newPosts = await checkPostNovelty(posts)
-
-  // Ship the posts to slack!
-  for (const post of newPosts) {
-    await postToChannel(post)
-    await postSave(post)
-  }
-}
+app.listen(port, () => console.log(`ReconBot server listening at http://localhost:${port}`))

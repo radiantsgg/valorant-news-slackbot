@@ -1,25 +1,15 @@
 const axios = require('axios')
 
-/**
- * 
- * @param {String} title Article title
- * @param {String} description Article description
- * @param {String} bannerUrl Uniform Resource Locator for banner image
- * @param {String} url Uniform Resource Locator for article
- * @param {String} tags Comma seperated values recommended
- * @returns null
- */
-module.exports = async function ({
+module.exports = async function ({ incoming_webhook_url }, {
   title,
   description,
   bannerUrl,
   url,
   tags
 }) {
-  
   try {
     await axios({
-      url: process.env.SLACK_WEBHOOK,
+      url: incoming_webhook_url,
       method: 'post',
       data: {
         text: title,
@@ -53,8 +43,10 @@ module.exports = async function ({
         ]
       }
     })
+    return true
   } catch (error) {
     console.error('Failed to post to Slack channel. ' + error.message)
+    return false
   }
 }
   
