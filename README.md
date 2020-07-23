@@ -1,6 +1,6 @@
 # Valorant News Slackbot :robot:
 
-**ReconBolt** will notify your Slack channel of any official posts from playvalorant.com
+A Slack bot named **ReconBolt** that sends you spicy Valorant news from https://playvalorant.com/en-us/news/.
 
 [![Add to Slack](https://platform.slack-edge.com/img/add_to_slack.png)](https://slack.com/oauth/v2/authorize?client_id=1228929719924.1258741992420&scope=incoming-webhook&user_scope=)
 
@@ -98,5 +98,3 @@ npm run start
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
