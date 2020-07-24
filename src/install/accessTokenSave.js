@@ -26,7 +26,7 @@ module.exports = async function (tokenResponse) {
     if (result.length) {
       await knex('channel')
         .where('incoming_webhook_channel_id', tokenResponse.incoming_webhook.channel_id)
-        .update(payload)
+        .update({ ...payload, 'is_active': true })
     } else {
       await knex('channel').insert(payload)
     }
