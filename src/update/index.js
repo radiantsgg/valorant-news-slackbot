@@ -6,6 +6,7 @@ const getChannels = require('./getChannels')
 
 
 module.exports = async function (req, res) {
+  
   // Fetch lastest posts
   const posts = await postFetch()
 
