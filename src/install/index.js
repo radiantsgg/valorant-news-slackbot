@@ -1,3 +1,4 @@
+const path = require('path')
 const axios = require('axios')
 
 const accessTokenRetrieve = require('./accessTokenRetrieve')
@@ -30,5 +31,5 @@ module.exports = async function (req, res) {
     return res.status(500)
   }
 
-  return res.sendStatus(200)
+  res.sendFile(path.join(__dirname + '/thanks.html'));
 }
