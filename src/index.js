@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 app.get('/install', require('./install'))
 
 app.use((req, res, next) => {
-  if (req.headers.api_key || '' !== process.env.API_KEY) {
+  if (req.headers.api_key !== process.env.API_KEY) {
     return res.status(403).json({ error: 'Invalid security token' });
   }
   next();
