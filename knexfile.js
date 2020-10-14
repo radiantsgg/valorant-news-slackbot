@@ -1,8 +1,8 @@
 module.exports = {
   development: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
-      port: 3306,
+      port: 5432,
       host: 'localhost',
       database: 'slackbots',
       user: 'root',
@@ -17,11 +17,17 @@ module.exports = {
     },
   },
   production: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
-      socketPath : process.env.DATABASE_SOCKET,
-      database: process.env.DATABASE_NAME,
-      user: process.env.DATABASE_USER
+      port: process.env.PG_PORT,
+      host: process.env.PG_HOST,
+      database: process.env.PG_DATABASE,
+      user: process.env.PG_USERNAME,
+      password: process.env.PG_PASSWORD,
+      ssl: {
+        rejectUnauthorized: false,
+        ca: process.env.PG_CERT,
+      }
     },
     migrations: {
       directory: './database/migrations',

@@ -28,16 +28,16 @@ Add the redirection URL `http://localhost:3000/install` to your app
 
 ### Installation
 
-MySQL 5.7 database required. https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
+Postgres database required. https://www.postgresql.org/download/
 
 Update `knexfile.js` with your database information:
 
 ```
 module.exports = {
   development: {
-    client: 'mysql2',
+    client: 'pg',
     connection: {
-      port: 3306,
+      port: 5432,
       host: 'localhost',
       database: 'slackbots',
       user: 'root',
