@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 app.get('/update', require('./update'))
 
-cron.schedule('* 5 * * *', () => { 
+cron.schedule('*/5 * * * *', () => {
   callback = function(response) {
     if (response.statusCode === 200) {
       console.log('ReconBolt fetched updates successfully')
