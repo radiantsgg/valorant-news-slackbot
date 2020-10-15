@@ -73,7 +73,7 @@ The install endpoint handles OAuth tokens and saves Slack server channel's requi
 
 `localhost:3000/update`
 
-The endpoint is used to trigger a search for new articles. When new articles are found they are pushed to servers.
+The endpoint is used to trigger a search for new articles. When new articles are found they are pushed to servers. By default the included cron job runs every five minutes.
 
 
 ## Deployment
